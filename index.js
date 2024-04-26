@@ -51,6 +51,28 @@ async function run() {
             const result= await spotCollection.findOne(query)
             res.send(result)
         })
+
+        app.put('/spots/:id',async(req,res)=>{
+            const id =req.params.id
+            const user= req.body;
+            const query= {_id: new ObjectId (id)}
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    image: user.image,
+                    tourists_spot_name: user.tourists_spot_name,
+                    country:user.country,
+                    location: user.location,
+                    average_cost: user.average_cost,
+                    seasonality: user.seasonality,
+                    travel_time: user.travel_time,
+                    totalVisitorsPerYear: user.totalVisitorsPerYear,
+                    description: user.description
+                },
+            };
+            const result=await spotCollection.updateOne(query,updateDoc,options)
+            res.send(result)
+        })
        
 
 
