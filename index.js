@@ -51,7 +51,7 @@ async function run() {
             const result= await spotCollection.findOne(query)
             res.send(result)
         })
-
+       
 
 
 
