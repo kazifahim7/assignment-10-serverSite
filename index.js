@@ -89,10 +89,11 @@ async function run() {
             res.send(countries)
         })
         app.get('/country/:id',async(req,res)=>{
-            const id =req.params.id;
-            const query={id: new ObjectId (id)}
-            const result=await countryCollection.findOne(query)
+            const id = parseInt(req.params.id);
+            const remain=countries.find(country=>country.id===id)
             
+            
+            res.send(remain)
         })
 
 
